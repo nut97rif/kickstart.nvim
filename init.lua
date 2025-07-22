@@ -731,7 +731,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -761,12 +761,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
         opts = {},
       },
@@ -795,7 +795,6 @@ require('lazy').setup({
         -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
         -- <c-e>: Hide menu
         -- <c-k>: Toggle signature help
-        --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
 
@@ -812,7 +811,7 @@ require('lazy').setup({
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
 
       sources = {
@@ -871,6 +870,11 @@ require('lazy').setup({
         transparent_mode = false,
       }
       vim.cmd 'colorscheme gruvbox'
+
+      vim.api.nvim_set_hl(0, 'GruvboxYellowSign', { fg = '#fabd2f', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'GruvboxRedSign', { fg = '#fb4934', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'GruvboxBlueSign', { fg = '#83a598', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'GruvboxAquaSign', { fg = '#8ec07c', bg = 'NONE' })
     end,
   },
 
