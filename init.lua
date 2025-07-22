@@ -871,10 +871,18 @@ require('lazy').setup({
       }
       vim.cmd 'colorscheme gruvbox'
 
+      -- Set the background of the Error, Warning, Info and Hint signs to match the colorscheme
       vim.api.nvim_set_hl(0, 'GruvboxYellowSign', { fg = '#fabd2f', bg = 'NONE' })
       vim.api.nvim_set_hl(0, 'GruvboxRedSign', { fg = '#fb4934', bg = 'NONE' })
       vim.api.nvim_set_hl(0, 'GruvboxBlueSign', { fg = '#83a598', bg = 'NONE' })
       vim.api.nvim_set_hl(0, 'GruvboxAquaSign', { fg = '#8ec07c', bg = 'NONE' })
+
+      -- Highlighting for TODO comments
+      -- Doesent look great with gruvbox, so disabled by default
+      -- vim.api.nvim_set_hl(0, 'TodoFgTODO', { fg = '#fabd2f', bg = 'NONE', bold = true }) -- yellow
+      -- vim.api.nvim_set_hl(0, 'TodoFgFIX', { fg = '#fb4934', bg = 'NONE', bold = true }) -- red
+      -- vim.api.nvim_set_hl(0, 'TodoFgHACK', { fg = '#d3869b', bg = 'NONE', bold = true }) -- purple
+      -- vim.api.nvim_set_hl(0, 'TodoFgNOTE', { fg = '#83a598', bg = 'NONE', bold = true }) -- blue
     end,
   },
 
