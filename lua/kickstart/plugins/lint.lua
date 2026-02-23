@@ -7,7 +7,23 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
+        php = { 'phpstan' },
       }
+
+      -- PHPStan: run from project root (composer.json) so vendor and scripts/ config are found
+      local base_phpstan = lint.linters.phpstan
+      if base_phpstan then
+        lint.linters.phpstan = function()
+          local root_file = (vim.fs.find('composer.json', { upward = true }))[1]
+          local root = root_file and vim.fs.dirname(root_file) or nil
+          local cmd = root and (root .. '/vendor/bin/phpstan') or 'vendor/bin/phpstan'
+          local config = root and (root .. '/scripts/phpstan-api.neon') or 'scripts/phpstan-api.neon'
+          return vim.tbl_extend('force', base_phpstan, {
+            cmd = cmd,
+            args = { 'analyse', '--no-progress', '-c', config },
+          })
+        end
+      end
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
